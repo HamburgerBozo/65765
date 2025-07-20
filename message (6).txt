@@ -1,0 +1,21 @@
+local part = workspace:FindFirstChild("Part") or workspace:FindFirstChildWhichIsA("BasePart")
+if not part then
+    warn("No part found in workspace")
+    return
+end
+
+local clickDetector = part:FindFirstChildOfClass("ClickDetector")
+if not clickDetector then
+    warn("No ClickDetector found inside: " .. part.Name)
+    return
+end
+
+local success, result = pcall(function()
+    return fireclickdetector(clickDetector, 10)
+end)
+
+if success and result then
+    print("ClickDetector triggered successfully.")
+else
+    warn("Failed to fire ClickDetector:", result)
+end
